@@ -1,0 +1,259 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "opencart Api",
+    "contact": {
+      "email": "ya.ilyaku@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.11"
+  },
+  "servers": [
+    {
+      "url": "http://t9521842.beget.tech/index.php"
+    }
+  ],
+  "tags": [
+    {
+      "name": "order"
+    },
+    {
+      "name": "categories",
+      "description": "Access to Petstore orders"
+    }
+  ],
+  "paths": {
+    "/api/order/getByCustomerId": {
+      "get": {
+        "tags": [
+          "order"
+        ],
+        "summary": "Находит заказы по номеру пользователя",
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "query",
+            "description": "номер пользователя",
+            "required": true,
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "успешная операция",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "orders"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "статус операции"
+                    },
+                    "orders": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "order_id": {
+                            "type": "string",
+                            "description": "номер заказа"
+                          },
+                          "total": {
+                            "type": "string",
+                            "description": "тотальная стоимость заказа"
+                          },
+                          "date_added": {
+                            "type": "string",
+                            "description": "дата оформления"
+                          },
+                          "products": {
+                            "properties": {
+                              "41": {
+                                "required": [
+                                  "name",
+                                  "quantity",
+                                  "price"
+                                ],
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "description": "название продукта"
+                                  },
+                                  "quantity": {
+                                    "type": "string",
+                                    "description": "количество продуктов"
+                                  },
+                                  "price": {
+                                    "type": "string",
+                                    "description": "стоимость продукта за единицу"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/category/index": {
+      "get": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "Выводит все категории с их описанием и статусами",
+        "responses": {
+          "200": {
+            "description": "успешная операция",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "status",
+                    "categories"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "categories": {
+                      "required": [
+                        "0"
+                      ],
+                      "properties": {
+                        "0": {
+                          "required": [
+                            "category_id",
+                            "image",
+                            "parent_id",
+                            "top",
+                            "column",
+                            "sort_order",
+                            "status",
+                            "date_added",
+                            "date_modified",
+                            "language_id",
+                            "name",
+                            "description",
+                            "meta_title",
+                            "meta_description",
+                            "meta_keyword",
+                            "store_id"
+                          ],
+                          "properties": {
+                            "category_id": {
+                              "type": "string",
+                              "example": "25",
+                              "description": "номер категории"
+                            },
+                            "image": {
+                              "type": "string",
+                              "example": "",
+                              "description": "изображение категории"
+                            },
+                            "parent_id": {
+                              "type": "string",
+                              "example": "0",
+                              "description": "номер родительской категории"
+                            },
+                            "top": {
+                              "type": "string",
+                              "example": "1",
+                              "description": "?"
+                            },
+                            "column": {
+                              "type": "string",
+                              "example": "1",
+                              "description": "?"
+                            },
+                            "sort_order": {
+                              "type": "string",
+                              "example": "3",
+                              "description": "?"
+                            },
+                            "status": {
+                              "type": "string",
+                              "example": "1",
+                              "description": "?"
+                            },
+                            "date_added": {
+                              "type": "string",
+                              "example": "2009-01-31 01:04:25",
+                              "description": "дата создания"
+                            },
+                            "date_modified": {
+                              "type": "string",
+                              "example": "2011-05-30 12:14:55",
+                              "description": "дата последнего изменения"
+                            },
+                            "language_id": {
+                              "type": "string",
+                              "example": "1",
+                              "description": "?"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Components",
+                              "description": "название категории"
+                            },
+                            "description": {
+                              "type": "string",
+                              "example": "",
+                              "description": "описание категории"
+                            },
+                            "meta_title": {
+                              "type": "string",
+                              "example": "Components",
+                              "description": "?"
+                            },
+                            "meta_description": {
+                              "type": "string",
+                              "example": "",
+                              "description": "?"
+                            },
+                            "meta_keyword": {
+                              "type": "string",
+                              "example": "",
+                              "description": "?"
+                            },
+                            "store_id": {
+                              "type": "string",
+                              "example": "0",
+                              "description": "?"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
