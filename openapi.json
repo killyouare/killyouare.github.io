@@ -2,6 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "opencart Api",
+    "description": "Взаимодействовать с api через query route, permissions убрал для удобства, сообщения с почты отправляются в спам",
     "contact": {
       "email": "ya.ilyaku@gmail.com"
     },
@@ -65,6 +66,12 @@
                       "type": "array",
                       "items": {
                         "type": "object",
+                        "required": [
+                          "order_id",
+                          "total",
+                          "date_added",
+                          "products"
+                        ],
                         "properties": {
                           "order_id": {
                             "type": "string",
@@ -138,9 +145,6 @@
                       "example": "success"
                     },
                     "categories": {
-                      "required": [
-                        "0"
-                      ],
                       "properties": {
                         "0": {
                           "required": [
